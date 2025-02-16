@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="left-up" width="9" height="9" tilewidth="400" tileheight="400" infinite="0" nextlayerid="2" nextobjectid="1">
+ <properties>
+  <property name="moves" type="int" value="50"/>
+  <property name="quantity" value="10,10,10"/>
+  <property name="targets" value="1,2,3"/>
+ </properties>
+ <tileset firstgid="1" source="Gem.tsx"/>
+ <layer id="1" name="Gem" width="9" height="9">
+  <properties>
+   <property name="Move" type="int" value="30"/>
+  </properties>
+  <data encoding="csv">
+5,3,5,3,5,3,5,1,3,
+3,4,2,2,4,1,1,4,5,
+5,4,3,1,5,3,2,4,3,
+4,5,1,1,4,5,3,1,4,
+4,1,1,5,5,3,3,2,4,
+2,2,5,3,3,5,1,1,5,
+3,3,1,5,2,5,5,1,4,
+4,4,1,5,2,2,1,3,4,
+1,3,2,2,3,5,3,5,1
+</data>
+ </layer>
+</map>
