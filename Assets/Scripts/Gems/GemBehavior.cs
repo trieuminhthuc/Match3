@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GemBehavior : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GemBehavior : MonoBehaviour
     public float colPadding;
 
     public GemData gemData;
+    public bool isSelected;
 
 
   
@@ -45,9 +47,9 @@ public class GemBehavior : MonoBehaviour
         c = gemData.GetRowIdx();
 
         
-        Vector3 position = new Vector3 (r * GemConfig.TILE_WIDTH, c * GemConfig.TILE_HEIGHT);
+     //   Vector3 position = new Vector3 (r * GemConfig.TILE_WIDTH, c * GemConfig.TILE_HEIGHT);
 
-        transform.localPosition = position;
+      //  transform.localPosition = position;
 
         
         
@@ -91,11 +93,39 @@ public class GemBehavior : MonoBehaviour
 
     private void Update()
     {
-        
+        while (isSelected)
+        {
+
+        }
     }
 
-  
-    
+
+
+
+    #endregion
+
+
+    #region Selecting logic
+
+    public void OnSelected()
+    {   
+        isSelected = true;
+        transform.DOKill();
+
+        Sequence tweenSe = DOTween.Sequence();
+
+        tweenSe.Append(transform.DOScale(0.85f, 0.1f));
+        tweenSe.Append(transform.DOScale(1f, 0.1f));
+        tweenSe.SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+        tweenSe.Play();
+
+    }
+
+    public void OnDeselected()
+    {
+        isSelected = false;
+        transform.DOKill(true);
+    }
 
     #endregion
 

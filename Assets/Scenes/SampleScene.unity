@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -565,6 +566,19 @@ MonoBehaviour:
   m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44625c188a507094b9096c9ad73a9e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGem: {fileID: 0}
 --- !u!1 &619213564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069165292}
-  - component: {fileID: 1069165291}
+  - component: {fileID: 1069165293}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -1112,22 +1126,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1069165291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069165290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d74ef96c99eab41824972799bc06ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseBoardTiles: {fileID: 1471700632}
-  GemPrefab: {fileID: 7377763825138925329, guid: 937141750cb8e324485c01dae83e20ad, type: 3}
-  gridTransform: {fileID: 1257495754}
-  baseTransform: {fileID: 635957115}
 --- !u!4 &1069165292
 Transform:
   m_ObjectHideFlags: 0
@@ -1143,6 +1141,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069165293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069165290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2abaa070b394a8d45b38f9bd6395e5b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GemPreFab: {fileID: 0}
+  viewGems: []
 --- !u!1 &1141161216
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,7 +155,19 @@ public class LevelModel {
     {
         this.boardModel = boardModel;
     }
+
+    public List<TargetModel> GetCurrentTarget()
+    {
+        return targets;
+    }
+
+    public void SetCurrentTargets(List<TargetModel> targets)
+    {
+        this.targets = targets;
+    }
     #endregion
+
+
 
 
 }
