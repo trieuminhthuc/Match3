@@ -38,6 +38,17 @@ public class GemData
         this.colIdx = colIdx;
     }
 
+    public void SetPositionInGrid(Vector2Int positionInGrid)
+    {
+        this.rowIdx = positionInGrid.x;
+        this.colIdx = positionInGrid.y;
+    }
+
+    public Vector2Int GetPositionInGrid()
+    {
+        return new Vector2Int(rowIdx, colIdx);
+    }
+
 
 
 

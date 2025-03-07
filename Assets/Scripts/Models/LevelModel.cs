@@ -4,6 +4,7 @@ using System.Xml;
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using System;
 
 public class LevelModel {
     public int level;
@@ -53,7 +54,50 @@ public class LevelModel {
             int boardWidth = int.Parse(mapNode.Attributes["width"].Value);
             int boardHeight = int.Parse(mapNode.Attributes["height"].Value);
 
+            Console.WriteLine($"board width: {boardWidth}, board height: {boardHeight}");
+            Debug.Log($"board width: {boardWidth}, board height: {boardHeight}");
+
             boardModel.SetBoardSize(boardWidth, boardHeight);
+
+            XmlNode propertiesNode = mapNode.SelectSingleNode("properties/property[@name='moves']");
+            if (propertiesNode != null && propertiesNode.Attributes["value"] != null)
+            {
+                moves = int.Parse(propertiesNode.Attributes["value"].Value);
+            }
+
+
+            XmlNode quantityNode = mapNode.SelectSingleNode("properties/property[@name='quantity']");
+            XmlNode targetNode = mapNode.SelectSingleNode("properties/property[@name='targets']");
+
+
+
+            string[] quantityList;
+            string[] targetList;
+
+            if (quantityNode != null && targetNode != null &&
+            quantityNode.Attributes["value"] != null && targetNode.Attributes["value"] != null)
+            {
+                quantityList = quantityNode.Attributes["value"].Value.Split(',');
+                targetList = targetNode.Attributes["value"].Value.Split(',');
+
+                if (quantityList.Length == targetList.Length)
+                {
+                    for (int i = 0; i < quantityList.Length; i++)
+                    {
+                        int id = int.Parse(targetList[i]);
+                        int quantity = int.Parse(quantityList[i]);
+                        targets.Add(new TargetModel(id, quantity));
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Mismatch in target and quantity lists in TMX file.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Missing 'quantity' or 'targets' property in TMX file.");
+            }
 
 
 
@@ -96,26 +140,10 @@ public class LevelModel {
 
 
 
-                switch (property.Attributes["name"].Value)
-                {
-                    case "Move": moves = int.Parse(property.Attributes["value"].Value); break;
-                    case "targets":
-                        targetValues = property.Attributes["value"].Value.Split(',').ToList(); ;
-                        break;
-                    case "quantity":
-                        targetQuantity = property.Attributes["value"].Value.Split(",").ToList();
-                        break;
-                    default: break;
-                }
+                
             }
 
-            for (int i = 0; i < targetValues.Count; i++)
-            {
-                TargetModel targetModel = new TargetModel();
-                targetModel.id = int.Parse(targetValues[i]);
-                targetModel.number = int.Parse(targetQuantity[i]);
-                targets.Add(targetModel);
-            }
+           
 
 
 
@@ -127,17 +155,33 @@ public class LevelModel {
     }
 
     private int[,] parseCSV(string csv, int width, int height)
-    {
-        string[] ids = csv.Split(',');
-        int[,] gems = new int[width, height];
+    {   
 
-        for (int i = 0; i < height; i++)
+      
+        string[] ids = csv.Split(',');
+        int[,] gems = new int[height, width];
+
+
+        Debug.Log($"ids size: " + ids);
+
+
+
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                gems[j, i] = int.Parse(ids[j * width + i]);
+            }
+        }
+
+        /*for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
+                Debug.Log($"idx: {i * width + j}" );
                 gems[i, j] = int.Parse(ids[i * width + j]);
             }
-        }
+        } */
 
         return gems;
     }

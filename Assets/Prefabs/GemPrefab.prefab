@@ -101,6 +101,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1154060485875775363}
   rowPadding: 0
   colPadding: 0
+  isSelected: 0
+  particlePrefab: {fileID: 6947888438021823969, guid: 3842d34f10d67814f97f9931982f4946, type: 3}
 --- !u!61 &4217896108293972766
 BoxCollider2D:
   m_ObjectHideFlags: 0

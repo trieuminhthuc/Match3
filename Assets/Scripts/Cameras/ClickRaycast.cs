@@ -22,7 +22,7 @@ public class ClickRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+       /* if (Input.GetMouseButtonDown(0))
         {
            
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -30,33 +30,11 @@ public class ClickRaycast : MonoBehaviour
 
             RaycastHit2D cast = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-
-            if (cast.collider != null)
-            {
-                
-                GemBehavior gem = cast.collider.gameObject.GetComponent<GemBehavior>();
-                if (currentGem == null)
-                {
-                    currentGem = gem;
-                    currentGem.OnSelected();
-                    Debug.Log($"Selected: {currentGem.gameObject.name}");
-                }
-                else if (currentGem != gem) // Swap logic
-                {
-                    Debug.Log($"Swapping {currentGem.gameObject.name} with {gem.gameObject.name}");
-                    //SwapGems(currentGem, gem);
-                    currentGem.OnDeselected();
-                    currentGem = null;
-                }
-                else // Clicking the same gem again -> Deselect
-                {
-                    Debug.Log($"Deselecting {currentGem.gameObject.name}");
-                    currentGem.OnDeselected();
-                    currentGem = null;
-                }
-
+            if (cast.collider != null) {
+                Debug.Log("Hit");
             }
-        }
+            
+        } */
     }
 
     public void SwapGem()
